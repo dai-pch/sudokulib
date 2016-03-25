@@ -16,7 +16,7 @@ _sudoku::_sudoku(const std::vector<int> &matrix)
 
 int _sudoku::addrow(const int position, const int num,
 	const int linkrow, std::vector<nonZeroPosition> &vec,
-	std::vector<element> &index)
+	std::map<int, element> &index)
 {
 	int row, col, uni;
 	nonZeroPosition node;
@@ -46,14 +46,14 @@ int _sudoku::addrow(const int position, const int num,
 	node.column = 234 + uni * 9 + num;
 	vec.push_back(node);
 
-	ele.position = position;
-	ele.number = num;
-	index.push_back(ele);
+	ele.eleposition = position;
+	ele.elenumber = num;
+	index[linkrow] = ele;
 
 	return 0;
 }
 
-int _sudoku::convert(std::vector<nonZeroPosition> &exa, std::vector<element> &index)
+int _sudoku::convert(std::vector<nonZeroPosition> &exa, std::map<int, element> &index)
 {
 	int linkrow = 0;
 
@@ -78,10 +78,10 @@ int _sudoku::convert(std::vector<nonZeroPosition> &exa, std::vector<element> &in
 	return linkrow;
 }
 
-int _sudoku::solve(int *result)
+int _sudoku::solve(int result[])
 {
 	std::vector<nonZeroPosition> exactCoverMatrix;
-	std::vector<element> index;
+	std::map<int, element> index;
 	std::vector<int> exactCoverResult;
 	int exactCoverMatrixRowNumber, flag;
 
@@ -95,7 +95,7 @@ int _sudoku::solve(int *result)
 	if (flag == 1)
 	{
 		for (int ii = 0; ii < 81; ii++)
-			result[index.at(exactCoverResult.at(ii) - 1).position - 1] = index.at(exactCoverResult.at(ii) - 1).number;
+			result[index[exactCoverResult.at(ii) - 1].eleposition - 1] = index.at(exactCoverResult.at(ii) - 1).elenumber;
 		return 1;
 	}
 	return 0;

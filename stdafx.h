@@ -10,13 +10,12 @@
 #include <stdio.h>
 #include <tchar.h>
 
+#include <stdexcept>
 #include <iostream>
 #include <vector>
-
+#include <map>
 
 // TODO:  在此处引用程序需要的其他头文件
-
-#include <stdexcept>
 
 #include "sudokulib.h"
 #include "lib/exactcoverlib.h"

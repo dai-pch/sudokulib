@@ -25,8 +25,8 @@ public: \
 #endif
 
 DeclareInterface(iSudoku)
-virtual int solve(std::vector<int> &res) = 0;
-virtual int solve(int *res) = 0;
+virtual int solve(std::vector<int> &result) = 0;
+virtual int solve(int result[]) = 0;
 EndInterface
 
 class Sudoku :implements iSudoku
@@ -39,8 +39,8 @@ public:
 	Sudoku(const std::vector<int> &matrix);
 	~Sudoku();
 
-	int solve(std::vector<int> &res);
-	int solve(int *res);
+	int solve(std::vector<int> &result);
+	int solve(int result[]);
 };
 
 #endif
